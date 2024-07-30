@@ -48,6 +48,9 @@ image_name=$DOCKER_IMAGE_NAME-$CODEBUILD_BUILD_NUMBER
 fullname="${DOCKERHUB_USERNAME}/${DOCKER_IMAGE_NAME}:$image_name"
 echo "fullname is $fullname"
 
+# Change to the directory containing the Dockerfile
+cd /application/frontend
+
 docker buildx create --name mybuilder --use
 docker buildx inspect --bootstrap
 
