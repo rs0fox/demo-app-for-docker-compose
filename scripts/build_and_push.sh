@@ -59,13 +59,13 @@ ls -l
 docker buildx create --name mybuilder --use
 docker buildx inspect --bootstrap
 
-docker buildx build --platform linux/amd64 -t ${fullname} $CODEBUILD_SRC_DIR/
+docker buildx build --platform linux/amd64 -t ${fullname} .
 
 echo "Docker build completed"
 docker images
 
 echo "Docker Push in Progress"
-docker buildx build --platform linux/amd64,linux/arm64 --tag ${fullname} --push $CODEBUILD_SRC_DIR/
+docker buildx build --platform linux/amd64,linux/arm64 --tag ${fullname} --push .
 echo "Docker Push is Done"
 
 if [ $? -ne 0 ]; then
