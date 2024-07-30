@@ -49,7 +49,12 @@ fullname="${DOCKERHUB_USERNAME}/${DOCKER_IMAGE_NAME}:$image_name"
 echo "fullname is $fullname"
 
 # Change to the directory containing the Dockerfile
-cd $CODEBUILD_SRC_DIR/application/frontend
+echo "Changing directory to ${CODEBUILD_SRC_DIR}/application/frontend"
+cd ${CODEBUILD_SRC_DIR}/application/frontend || { echo "Failed to change directory to ${CODEBUILD_SRC_DIR}/application/frontend"; exit 1; }
+
+# List files to verify Dockerfile is present
+echo "Listing files in ${CODEBUILD_SRC_DIR}/application/frontend:"
+ls -l
 
 docker buildx create --name mybuilder --use
 docker buildx inspect --bootstrap
