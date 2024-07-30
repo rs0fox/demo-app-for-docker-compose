@@ -9,7 +9,9 @@ from redis import Redis
 
 app = Flask(__name__)
 
-redisurl = os.getenv('REDIS_URL')
+# Get Redis connection details from environment variables
+redis_host = os.getenv('REDIS_HOST', 'localhost')  # Default to 'localhost' if not set
+redis_port = int(os.getenv('REDIS_PORT', 6379))    # Default to 6379 if not set
 hostname = socket.gethostname()
 
 # Button Colour
@@ -19,7 +21,7 @@ button = './static/{}.png'.format(buttoncolour)
 
 def get_redis():
     if not hasattr(g, 'redis'):
-        g.redis = Redis(host=redisurl, db=0, socket_timeout=5,
+        g.redis = Redis(host=redis_host, port=redis_port, db=0, socket_timeout=5,
                         decode_responses=True)
     return g.redis
 
