@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: demo-app
-          image: nomadstormbreaker/python-redis-app:python-redis-app-5
+          image: foxe22/python-redis-app:python-redis-app-5
           ports:
             - containerPort: 80
           env:
