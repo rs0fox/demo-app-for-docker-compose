@@ -39,7 +39,7 @@ fi
 # Get the region defined in the current configuration (default to us-east-1 if none defined)
 region=$AWS_REGION
 if [ -z "$region" ]; then
-    region="us-east-1"
+    region="ap-south-1"
 fi
 echo "Region value is: $region"
 
